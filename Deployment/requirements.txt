@@ -2,4 +2,5 @@ Flask
 keras
 nltk
 numpy
+tensorflow
 gunicorn
