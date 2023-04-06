@@ -11,13 +11,13 @@ import numpy as np
 
 from keras.models import load_model
 
-model = load_model("Deployment/model.h5")
+model = load_model("model.h5")
 import json
 import random
 
-intents = json.loads(open("Deployment/gita_intents.json", encoding="utf-8").read())
-words = pickle.load(open("Deployment/texts.pkl", "rb"))
-classes = pickle.load(open("Deployment/labels.pkl", "rb"))
+intents = json.loads(open("gita_intents.json", encoding="utf-8").read())
+words = pickle.load(open("texts.pkl", "rb"))
+classes = pickle.load(open("labels.pkl", "rb"))
 
 
 def clean_up_sentence(sentence):
