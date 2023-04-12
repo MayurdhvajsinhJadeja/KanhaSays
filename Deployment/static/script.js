@@ -7,7 +7,9 @@ function darkTheme() {
   var developer = document.getElementById("developer");
   var dname = document.getElementById("d-name");
   var body = document.getElementById("body");
-
+  var footer = document.getElementById("footer");
+  var extrab = document.getElementsByClassName("btn-secondary");
+  
   light.style = ('display: block');
   dark.style = ('display: none');
   heading.style = ('color: antiquewhite');
@@ -16,6 +18,8 @@ function darkTheme() {
   dname.style = ('color: antiquewhite')
   body.style = ('background-color: rgb(16, 25, 56)');
   ask.style = ('background-color: rgb(13, 0, 255);');
+  footer.style = ('background-color: rgb(16, 25, 56);');
+  extrab.style = ('background-color: #5f5f5f;');
 }
 
 function lightTheme() {
@@ -29,7 +33,9 @@ function lightTheme() {
   var developer = document.getElementById("developer");
   var dname = document.getElementById("d-name");
   var body = document.getElementById("body");
-
+  var footer = document.getElementById("footer");
+  var extrab = document.getElementsByClassName("btn-secondary");
+  
   light.style = ('display: none');
   dark.style = ('display: block');
   heading.style = ('color: black');
@@ -38,5 +44,7 @@ function lightTheme() {
   dname.style = ('color: black')
   body.style = ('background-color: rgb(230, 230, 230)');
   ask.style = ('background-color: black');
+  footer.style = ('background-color: rgb(230, 230, 230);');
+  extrab.style = ('background-color: #86a7ff;');
 }
 

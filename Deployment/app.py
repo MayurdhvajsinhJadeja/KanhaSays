@@ -1,8 +1,8 @@
 import nltk
 
-nltk.download("punkt")
-nltk.download("wordnet")
-nltk.download("popular")
+# nltk.download("punkt")
+# nltk.download("wordnet")
+# nltk.download("popular")
 from nltk.stem import WordNetLemmatizer
 
 lemmatizer = WordNetLemmatizer()
@@ -11,13 +11,13 @@ import numpy as np
 
 from keras.models import load_model
 
-model = load_model("model.h5")
+model = load_model("Deployment/model.h5")
 import json
 import random
 
-intents = json.loads(open("gita_intents.json", encoding="utf-8").read())
-words = pickle.load(open("texts.pkl", "rb"))
-classes = pickle.load(open("labels.pkl", "rb"))
+intents = json.loads(open("Deployment/gita_intents.json", encoding="utf-8").read())
+words = pickle.load(open("Deployment/texts.pkl", "rb"))
+classes = pickle.load(open("Deployment/labels.pkl", "rb"))
 
 
 def clean_up_sentence(sentence):
@@ -41,8 +41,8 @@ def bow(sentence, words, show_details=True):
             if w == s:
                 # assign 1 if current word is in the vocabulary position
                 bag[i] = 1
-                if show_details:
-                    print("found in bag: %s" % w)
+                # if show_details:
+                #     print("found in bag: %s" % w)
     return np.array(bag)
 
 
@@ -83,7 +83,17 @@ def chatbot_response(msg):
 # s = "how to attain moksha?"
 # print(chatbot_response(s))
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
+import pymysql
+
+# MySQL configuration
+db = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="feedback"
+)
+
 
 app = Flask(__name__)
 app.secret_key = "5636-d7b6-d647-dd45-e434-8551-f27b-680d"
@@ -101,6 +111,26 @@ def get_bot_response():
     ans = chatbot_response(que)
     return render_template("/index.html", answer=ans, question=que)
 
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
+
+@app.route('/submit-feedback', methods=['POST'])
+def submit_feedback():
+    name = request.form['name']
+    email = request.form['email']
+    feedback = request.form['feedback']
+
+    # Insert feedback into database
+    cursor = db.cursor()
+    sql = "INSERT INTO feedback (name, email, feedback) VALUES (%s, %s, %s)"
+    values = (name, email, feedback)
+    cursor.execute(sql, values)
+    db.commit()
+
+    # Redirect user back to index page with success message
+    flash('Thank you for your feedback!')
+    return render_template('/index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

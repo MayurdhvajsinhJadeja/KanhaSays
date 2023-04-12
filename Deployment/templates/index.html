@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- <link rel="icon" type="image/x-icon" href="./Deployment/static/favicon.ico">   -->
+  <link rel="icon" href="../static/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon" />
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="../static/script.js"></script>
   <meta charset="UTF-8">
@@ -26,7 +30,7 @@
       </svg>
     </div>
     <div>
-      <img src="../static/peacock-feather-2.png" alt="Feather" class="feather">
+      <img src="../static/krishna2.png" alt="Feather" class="feather">
     </div>
     <h1 class="text-center head" id="heading">KãnhãSays</h1>
     <h6 class="text-center tagline" id="tagline">The Divine Wisdom of Shree Krishna - Your Key to Happiness.🦚</h6>
@@ -42,9 +46,10 @@
           <div class="btn btn-secondary" id="hcibabf" onclick="hcibabffillQuestionTextarea()">How can I be a better friend?</div>
         </div>
         <textarea id="answer" class="form-control answer" rows="6" readonly></textarea>
-        <div class="btn btn-secondary" id="translate">Translate</div> &nbsp;
+        <div class="btn btn-secondary" id="translate" >Translate</div> &nbsp;
+        <div class="btn btn-secondary" id="speak" >Listen</div> &nbsp;
+        <div class="btn btn-secondary" id="feedback" onclick="window.location.href='/feedback'">Give Feedback</div>
 
-        <div class="btn btn-secondary" id="speak" >Listen</div>
     </div>
     
   </form>
@@ -54,6 +59,7 @@
     </div>
   </footer> 
   <script>
+    
     window.onload = function() {
         if (performance.navigation.type == 1) {
             window.location.href = "/";
@@ -69,7 +75,11 @@
           i++;
           setTimeout(typeLetter, 30); 
       }
-      
+      // if (i === ta_ans.length) {
+      //   // Enable translate and listen buttons when full text is displayed
+      //   document.getElementById("translate").style.pointerEvents = "auto";
+      //   document.getElementById("speak").style.pointerEvents = "auto";
+      // }
     }
     typeLetter();
   </script>
@@ -79,7 +89,7 @@
       var text = $('#answer').val();
       var msg = new SpeechSynthesisUtterance();
       var voices = window.speechSynthesis.getVoices();
-      msg.lang = "hi-IN";
+      msg.lang = "Gu-IN";
       msg.voice = voices[1];
       msg.rate = 1;
       msg.pitch = 1.5;
@@ -107,42 +117,6 @@
         answer.value = data.responseData.translatedText;
       });
     });
-  //   translate.addEventListener("click", () => {
-  //   let answer = document.getElementById("answer");
-  //   let text = answer.value,
-  //     translateFrom = 'en-GB',
-  //     translateTo = 'gu-IN';
-  //   if (!text) return;
-  //   answer.value = "Translating...";
-  //   let apiUrl = `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`;
-  //   fetch(apiUrl)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       answer.value = data.responseData.translatedText;
-  //       let newAnswer = document.createElement("textarea");
-  //       newAnswer.id = "new-answer";
-  //       newAnswer.style.width = answer.clientWidth + "px";
-  //       newAnswer.style.height = answer.clientHeight + "px";
-  //       newAnswer.value = data.responseData.translatedText;
-  //       answer.parentNode.insertBefore(newAnswer, answer.nextSibling);
-  //       let viewButton = document.createElement("button");
-  //       viewButton.innerText = "View";
-  //       viewButton.addEventListener("click", () => {
-  //         answer.style.display = "none";
-  //         newAnswer.style.display = "block";
-  //       });
-  //       answer.parentNode.insertBefore(viewButton, answer.nextSibling);
-  //       let showOriginalButton = document.createElement("button");
-  //       showOriginalButton.innerText = "Show Original";
-  //       showOriginalButton.addEventListener("click", () => {
-  //         answer.style.display = "block";
-  //         newAnswer.style.display = "none";
-  //       });
-  //       answer.parentNode.insertBefore(showOriginalButton, answer.nextSibling);
-  //     });
-  // });
-
-
 
 
     function modfillQuestionTextarea() {
@@ -176,6 +150,7 @@
       questionTextarea.value = hcibabfText
     }
   </script>
-
+<!-- credits for favicon:  -->
+<!-- <a href="https://www.flaticon.com/free-icons/krishna" title="krishna icons">Krishna icons created by Freepik - Flaticon</a> -->
 </body>
 </html>

@@ -29,7 +29,6 @@ body {
 #footer{
   margin-bottom: 0%;
   height: 30px;
-  background-color: rgb(230, 230, 230);
 }
 
 #answer {
@@ -64,6 +63,8 @@ body {
 .btn-secondary{
   background-color: #5f5f5f;
 }
+
+
 .btn-secondary:hover{
   background-color: #4c4c4c;
 }
@@ -90,10 +91,10 @@ body {
 .feather {
   position: absolute;
   margin-top: 0%;
-  width: 13%;
+  width: 12%;
   margin-left: 44%;
-  animation: tilt 5s infinite;
-  rotate: 20deg;
+  /* animation: tilt 5s infinite; */
+  /* rotate: 20deg; */
 }
 
 a {
