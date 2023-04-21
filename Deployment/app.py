@@ -84,15 +84,15 @@ def chatbot_response(msg):
 # print(chatbot_response(s))
 
 from flask import Flask, render_template, request, flash
-import pymysql
+# import pymysql
 
-# MySQL configuration
-db = pymysql.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="feedback"
-)
+# # MySQL configuration
+# db = pymysql.connect(
+#     host="localhost",
+#     user="root",
+#     password="",
+#     database="feedback"
+# )
 
 
 app = Flask(__name__)
@@ -111,26 +111,26 @@ def get_bot_response():
     ans = chatbot_response(que)
     return render_template("/index.html", answer=ans, question=que)
 
-@app.route('/feedback')
-def feedback():
-    return render_template('feedback.html')
+# @app.route('/feedback')
+# def feedback():
+#     return render_template('feedback.html')
 
-@app.route('/submit-feedback', methods=['POST'])
-def submit_feedback():
-    name = request.form['name']
-    email = request.form['email']
-    feedback = request.form['feedback']
+# @app.route('/submit-feedback', methods=['POST'])
+# def submit_feedback():
+#     name = request.form['name']
+#     email = request.form['email']
+#     feedback = request.form['feedback']
 
-    # Insert feedback into database
-    cursor = db.cursor()
-    sql = "INSERT INTO feedback (name, email, feedback) VALUES (%s, %s, %s)"
-    values = (name, email, feedback)
-    cursor.execute(sql, values)
-    db.commit()
+#     # Insert feedback into database
+#     cursor = db.cursor()
+#     sql = "INSERT INTO feedback (name, email, feedback) VALUES (%s, %s, %s)"
+#     values = (name, email, feedback)
+#     cursor.execute(sql, values)
+#     db.commit()
 
-    # Redirect user back to index page with success message
-    flash('Thank you for your feedback!')
-    return render_template('/index.html')
+#     # Redirect user back to index page with success message
+#     flash('Thank you for your feedback!')
+#     return render_template('/index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
