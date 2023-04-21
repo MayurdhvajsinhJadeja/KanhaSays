@@ -1,8 +1,8 @@
 import nltk
 
-# nltk.download("punkt")
-# nltk.download("wordnet")
-# nltk.download("popular")
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("popular")
 from nltk.stem import WordNetLemmatizer
 
 lemmatizer = WordNetLemmatizer()
@@ -16,7 +16,7 @@ import json
 import random
 
 intents = json.loads(open("Deployment/gita_intents.json", encoding="utf-8").read())
-words = pickle.load(open("Deployment/texts.pkl", "rb"))
+words = pickle.load(open("Deployment/texts.pkl", "rb")) 
 classes = pickle.load(open("Deployment/labels.pkl", "rb"))
 
 
