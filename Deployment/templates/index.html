@@ -47,8 +47,9 @@
         </div>
         <textarea id="answer" class="form-control answer" rows="6" readonly></textarea>
         <div class="btn btn-secondary" id="translate" >Translate</div> &nbsp;
-        <div class="btn btn-secondary" id="speak" >Listen</div> &nbsp;
-<!--         <div class="btn btn-secondary" id="feedback" onclick="window.location.href='/feedback'">Give Feedback</div> -->
+        <div class="btn btn-secondary" id="speak">Listen</div> &nbsp;
+        <div class="btn btn-secondary" id="reset" style="display: none;">Back To Orignal</div> &nbsp;
+        <!-- <div class="btn btn-secondary" id="feedback" onclick="window.location.href='/feedback'">Give Feedback</div> -->
 
     </div>
     
@@ -66,14 +67,25 @@
         }
         // alert("Some of the functions may not work if you are using Chrome browser. Better switch to Firefox instead.");
     }
+    var qtextarea = document.getElementById("question");
+    qtextarea.addEventListener("keydown", function(event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault(); // prevent default behavior of adding a new line
+        document.getElementById("ask-form").submit();
+      }
+    });
     let ta_ans = "{{answer}}";
     var i = 0,j = 0;
+    var fullTextDisplayed = false;
     var textarea = document.getElementById("answer");
     function typeLetter() {
       if (i < ta_ans.length) {
           textarea.value += ta_ans[i];
           i++;
           setTimeout(typeLetter, 30); 
+      } else if (i==(ta_ans.length-1)) {
+        // Enable translate and listen buttons when full text is displayed
+        fullTextDisplayed = true;
       }
       // if (i === ta_ans.length) {
       //   // Enable translate and listen buttons when full text is displayed
@@ -84,8 +96,11 @@
     typeLetter();
   </script>
   <script>
-    let a = document.getElementById("speak");
-    a.addEventListener("click",function(){
+    // let a = document.getElementById("speak");
+    let speakButton = document.getElementById("speak");
+    let translateButton = document.getElementById("translate");
+    let resetButton = document.getElementById("reset");
+    speakButton.addEventListener("click",function(){
       var text = $('#answer').val();
       var msg = new SpeechSynthesisUtterance();
       var voices = window.speechSynthesis.getVoices();
@@ -102,22 +117,44 @@
     if (navigator.userAgent.indexOf("Firefox") == -1) {
       alert("Some functionalities may not work as expected. For better experience, please use Firefox instead.");
     }
-
-    translate.addEventListener("click", () => {
-    let answer = document.getElementById("answer");
-    let text = answer.value,
-      translateFrom = 'en-GB',
-      translateTo = 'gu-IN';
-    if (!text) return;
-    answer.value = "Translating...";
-    let apiUrl = `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`;
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        answer.value = data.responseData.translatedText;
-      });
-    });
-
+    translateButton.addEventListener("click", translate);
+    function translate(){
+      let answer = document.getElementById("answer");
+      let speakButton = document.getElementById("speak");
+      let translateButton = document.getElementById("translate");
+      let resetButton = document.getElementById("reset");
+      let originalText = ta_ans;
+      let text = answer.value,
+        translateFrom = 'en-GB',
+        translateTo = 'gu-IN';
+      if (!text) return;
+      answer.value = "Translating...";
+      let apiUrl = `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`;
+      fetch(apiUrl)
+        .then((res) => res.json())
+        .then((data) => {
+          answer.value = data.responseData.translatedText;
+        });
+        // Change button text and function
+      translateButton.innerHTML = "Back to Original";
+      translateButton.removeEventListener("click", translate);
+      translateButton.addEventListener("click", reset);
+      speakButton.style.display = "none";
+    }
+    
+    
+    // translateButton.addEventListener("click", reset);
+    function reset(){
+      let answer = document.getElementById("answer");
+      let speakButton = document.getElementById("speak");
+      let translateButton = document.getElementById("translate");
+      answer.value = ta_ans;
+      translateButton.innerHTML = "Translate";
+      translateButton.removeEventListener("click", reset);
+      translateButton.addEventListener("click", translate);
+      speakButton.style.display = "block";
+    }
+    
 
     function modfillQuestionTextarea() {
       const modDiv = document.getElementById("mod");

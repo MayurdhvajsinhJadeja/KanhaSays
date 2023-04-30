@@ -12,7 +12,7 @@ words=[]
 classes = []
 documents = []
 ignore_words = ['?', '!']
-data_file = open('Deployment/gita_intents.json', encoding='utf-8').read()
+data_file = open('./gita_intents.json', encoding='utf-8').read()
 intents = json.loads(data_file)
 for intent in intents['intents']:
     for pattern in intent['patterns']:
@@ -79,99 +79,6 @@ model.add(Dense(len(train_y[0]), activation='softmax'))
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 # fitting and saving the model 
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=280, batch_size=5, verbose=1)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=350, batch_size=5, verbose=1)
 model.save('model.h5', hist)
 print("model created")
-
-
-# import json
-# import pickle
-# import numpy as np
-# from keras.models import Sequential
-# from keras.layers import Dense, Activation, Dropout, Embedding, Flatten
-# from keras.optimizers import SGD
-# from keras.preprocessing.text import Tokenizer
-# from keras_preprocessing.sequence import pad_sequences
-
-# from sklearn.preprocessing import LabelEncoder
-# import random
-
-# # load data
-# data_file = open('Deployment/gita_intents.json', encoding='utf-8').read()
-# intents = json.loads(data_file)
-
-# # extract patterns and labels
-# patterns = []
-# labels = []
-# for intent in intents['intents']:
-#     for pattern in intent['patterns']:
-#         patterns.append(pattern)
-#         labels.append(intent['tag'])
-
-# # tokenize patterns
-# tokenizer = Tokenizer()
-# tokenizer.fit_on_texts(patterns)
-# word_index = tokenizer.word_index
-
-# # convert patterns to sequences
-# sequences = tokenizer.texts_to_sequences(patterns)
-
-# # pad sequences to max length
-# maxlen = max([len(seq) for seq in sequences])
-# padded_sequences = pad_sequences(sequences, maxlen=maxlen, padding='post')
-
-# # convert labels to one-hot encoding
-# label_encoder = LabelEncoder()
-# label_encoder.fit(labels)
-# encoded_labels = label_encoder.transform(labels)
-# num_classes = len(label_encoder.classes_)
-# onehot_labels = np.zeros((len(encoded_labels), num_classes))
-# for i, label in enumerate(encoded_labels):
-#     onehot_labels[i][label] = 1
-
-# # shuffle data
-# data = list(zip(padded_sequences, onehot_labels))
-# random.shuffle(data)
-# padded_sequences, onehot_labels = zip(*data)
-
-# # split data into train and test sets
-# split_idx = int(len(padded_sequences) * 0.8)
-# train_x = np.array(padded_sequences[:split_idx])
-# train_y = np.array(onehot_labels[:split_idx])
-# test_x = np.array(padded_sequences[split_idx:])
-# test_y = np.array(onehot_labels[split_idx:])
-
-# # load pre-trained word embeddings
-# embedding_dim = 100
-# embedding_index = {}
-# with open('Deployment/glove.6B.100d.txt', encoding='utf-8') as f:
-#     for line in f:
-#         values = line.split()
-#         word = values[0]
-#         coefs = np.asarray(values[1:], dtype='float32')
-#         embedding_index[word] = coefs
-
-# # create embedding matrix
-# num_words = len(word_index) + 1
-# embedding_matrix = np.zeros((num_words, embedding_dim))
-# for word, i in word_index.items():
-#     embedding_vector = embedding_index.get(word)
-#     if embedding_vector is not None:
-#         embedding_matrix[i] = embedding_vector
-
-# # define model architecture
-# model = Sequential()
-# model.add(Embedding(num_words, embedding_dim, input_length=maxlen, weights=[embedding_matrix], trainable=False))
-# model.add(Flatten())
-# model.add(Dense(128, activation='relu'))
-# model.add(Dropout(0.5))
-# model.add(Dense(num_classes, activation='softmax'))
-
-# # compile model
-# sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-# model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
-
-# # train model
-# hist = model.fit(train_x, train_y, validation_data=(test_x, test_y), epochs=250, batch_size=5, verbose=1)
-# model.save('chatbot_model.h5', hist)
-# print("Model trained and saved to file.")
