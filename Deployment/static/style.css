@@ -122,50 +122,39 @@ a {
 }
 
 .container {
-  width: 100%;
   max-width: 750px;
-  margin: 0 0;
-  max-height: 750px;
-
+  margin: 0 auto;
+  padding: 50px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-@media screen and (max-width: 1536px) {
+@media screen and (max-width: 767px) {
   .container {
-    margin: 25%;
-    margin-top: 0%;
-    max-width: 750px;
-    padding: 0 5px;
+    padding: 30px;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .container {
+    padding: 10px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .container {
-    margin: 6%;
-    margin-top: 20%;
-    max-width: 80px;
-    padding: 0 5px;
-  }
-}
-@media screen and (max-width: 525px) {
-  .container {
-    margin: 7%;
-    margin-top: 20%;
-    max-width: 90px;
-    padding: 0 5px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .container {
-    margin: 7.5%;
-    margin-top: 0%;
-    max-width: 170px;
-    padding: 0 5px;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .container {
-    margin: 15%;
-    margin-top: 0%;
-    max-width: 370px;
-    padding: 0 5px;
+    padding: 5px;
   }
 }
