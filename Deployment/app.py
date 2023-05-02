@@ -1,8 +1,8 @@
 import nltk
 
-# nltk.download("punkt")
-# nltk.download("wordnet")
-# nltk.download("popular")
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("popular")
 from nltk.stem import WordNetLemmatizer
 
 lemmatizer = WordNetLemmatizer()
