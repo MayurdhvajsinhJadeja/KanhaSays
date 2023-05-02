@@ -1,9 +1,11 @@
 import nltk
 
-nltk.download("punkt")
-nltk.download("wordnet")
-nltk.download("popular")
+# nltk.download("punkt")
+# nltk.download("wordnet")
+# nltk.download("popular")
 from nltk.stem import WordNetLemmatizer
+
+nltk.data.path.append("./nltkd/")
 
 lemmatizer = WordNetLemmatizer()
 import pickle
@@ -16,7 +18,7 @@ import json
 import random
 
 intents = json.loads(open("./gita_intents.json", encoding="utf-8").read())
-words = pickle.load(open("./texts.pkl", "rb")) 
+words = pickle.load(open("./texts.pkl", "rb"))
 classes = pickle.load(open("./labels.pkl", "rb"))
 
 
@@ -84,6 +86,7 @@ def chatbot_response(msg):
 # print(chatbot_response(s))
 
 from flask import Flask, render_template, request, flash
+
 # import pymysql
 
 # # MySQL configuration
@@ -98,7 +101,7 @@ from flask import Flask, render_template, request, flash
 app = Flask(__name__)
 app.secret_key = "5636-d7b6-d647-dd45-e434-8551-f27b-680d"
 # app.static_folder = 'static'
-app.config['TIMEOUT'] = 120
+
 
 @app.route("/")
 def home():
@@ -110,6 +113,12 @@ def get_bot_response():
     que = request.form["question"]
     ans = chatbot_response(que)
     return render_template("/index.html", answer=ans, question=que)
+
+
+@app.errorhandler(502)
+def handle_502_error(error):
+    return render_template("/error.html"), 502
+
 
 # @app.route('/feedback')
 # def feedback():
@@ -133,4 +142,5 @@ def get_bot_response():
 #     return render_template('/index.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.debug = True
+    app.run()
