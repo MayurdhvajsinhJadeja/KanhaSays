@@ -98,7 +98,7 @@ from flask import Flask, render_template, request, flash
 app = Flask(__name__)
 app.secret_key = "5636-d7b6-d647-dd45-e434-8551-f27b-680d"
 # app.static_folder = 'static'
-
+app.config['TIMEOUT'] = 60
 
 @app.route("/")
 def home():
