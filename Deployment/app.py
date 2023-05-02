@@ -114,7 +114,7 @@ def home():
 #     ans = chatbot_response(que)
 #     return render_template("/index.html", answer=ans, question=que)
 
-@app.route('/ask')
+@app.route('/ask',methods=["POST","GET"])
 def feedback():
     return render_template('/error.html')
 
