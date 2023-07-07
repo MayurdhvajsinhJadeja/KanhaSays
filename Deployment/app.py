@@ -63,7 +63,7 @@ def getResponse(ints, intents_json):
         result = "I cannot understand this statement. Perhaps rephrase it or type it differently?"
     return result
 
-
+model = load_model("./model.h5")
 def chatbot_response(msg, model):
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
