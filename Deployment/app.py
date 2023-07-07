@@ -108,15 +108,15 @@ def home():
     return render_template("/index.html")
 
 
-# @app.route("/ask", methods=["POST", "GET"])
-# def get_bot_response():
-#     que = request.form["question"]
-#     ans = chatbot_response(que)
-#     return render_template("/index.html", answer=ans, question=que)
+@app.route("/ask", methods=["POST", "GET"])
+def get_bot_response():
+    que = request.form["question"]
+    ans = chatbot_response(que)
+    return render_template("/index.html", answer=ans, question=que)
 
-@app.route('/ask',methods=["POST","GET"])
-def feedback():
-    return render_template('/error.html')
+# @app.route('/ask',methods=["POST","GET"])
+# def feedback():
+#     return render_template('/error.html')
 
 # @app.route('/submit-feedback', methods=['POST'])
 # def submit_feedback():
