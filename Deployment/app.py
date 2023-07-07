@@ -64,10 +64,12 @@ def getResponse(ints, intents_json):
     return result
 
 
-def chatbot_response(msg):
+def chatbot_response(msg, model):
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
     return res
+
+
 
 # s = "how to attain moksha?"
 # print(chatbot_response(s))
@@ -98,7 +100,7 @@ def home():
 @app.route("/ask", methods=["POST", "GET"])
 def get_bot_response():
     que = request.form["question"]
-    ans = chatbot_response(que)
+    ans = chatbot_response(que, model)  # Pass the 'model' variable as an argument
     return render_template("/index.html", answer=ans, question=que)
 
 # @app.route('/ask',methods=["POST","GET"])
