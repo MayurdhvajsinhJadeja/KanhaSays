@@ -1,15 +1,3 @@
-import importlib
-
-def install_nltk():
-    try:
-        importlib.import_module('nltk')
-    except ImportError:
-        import pip
-        pip.main(['install', 'nltk'])
-
-# Install NLTK if not already installed
-install_nltk()
-
 import streamlit as st
 import nltk
 import pickle
