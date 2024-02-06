@@ -6,6 +6,9 @@ from keras.models import load_model
 import json
 import random
 
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("popular")
 from nltk.stem import WordNetLemmatizer
 
 # Load your data and models
