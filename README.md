@@ -20,6 +20,20 @@ The website will ask you to enter your query, and then provide you with a releva
 
 KanhaSays works by making use of a JSON file that contains all of the verses from the Bhagavad Gita. We use natural language processing (NLP) and neural network techniques to train the model on the JSON file. When a user enters a query, the model converts the query into tokens and intents, and then searches the JSON file for the relevant verse. The system provides the user with the verse and also allows them to translate it and listen to it.
 
+## Screenshots
+
+- Flowchart
+- ![FlowChart](https://github.com/MayurdhvajsinhJadeja/KanhaSays/blob/main/flowchart.jpg)
+
+- Light Mode
+- ![LightMode](https://github.com/MayurdhvajsinhJadeja/KanhaSays/blob/main/lightmode.jpg)
+
+- Translation
+- ![Translation](https://github.com/MayurdhvajsinhJadeja/KanhaSays/blob/main/translated.jpg)
+
+- Dark Mode
+- ![DarkMode](https://github.com/MayurdhvajsinhJadeja/KanhaSays/blob/main/darkmode.jpg)
+
 ## Future Work
 
 In the future, we plan to improve the system by using a semantic approach to better understand the user's intent and provide more accurate verses. We also plan to add a chatbot feature that will remember the user's previous inputs and provide more personalized responses. Additionally, we plan to allow users to create their own accounts and save their favorite verses for easy access.
