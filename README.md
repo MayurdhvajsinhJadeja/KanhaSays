@@ -16,6 +16,10 @@ KanhaSays is an AI-powered system that helps people stay motivated by providing 
 
 The website will ask you to enter your query, and then provide you with a relevant verse from the Bhagavad Gita. You can also choose to translate the verse into your preferred language or listen to it. Additionally, you can switch between dark and light themes based on your preference.
 
+To run the app, go to the deployment folder and then run the app.py file using command `python app.py` 
+
+The app will be started at `https://127.0.0.1:5000`
+
 ## Detailed Explanation
 
 KanhaSays works by making use of a JSON file that contains all of the verses from the Bhagavad Gita. We use natural language processing (NLP) and neural network techniques to train the model on the JSON file. When a user enters a query, the model converts the query into tokens and intents, and then searches the JSON file for the relevant verse. The system provides the user with the verse and also allows them to translate it and listen to it.
