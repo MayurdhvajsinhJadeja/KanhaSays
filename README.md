@@ -1,6 +1,6 @@
 # KanhaSays
 
-KanhaSays is an AI-powered system that helps people stay motivated by providing them with verses from the Bhagavad Gita, a Hindu scripture full of wisdom and guidance.
+KanhaSays is an AI-powered system that delivers verses from the Bhagavad Gita, aiding motivation. Built with Python and libraries like NLTK, TensorFlow, and Flask, it employs NLP and neural networks to interpret user queries, providing relevant verses. Users can translate or listen to verses and switch between light and dark themes for customization. This is helpful to the people who are suffering from depression or are frustrated with something. It Provides inspiration and guidance to individuals facing various challenges, including depression, frustration, and anxiety. Its ability to deliver personalized verses from the Bhagavad Gita, along with translations and audio options, empowers users to find solace and motivation in the timeless wisdom of this sacred text. Whether it's students grappling with exam stress or individuals navigating life's complexities, it offers a beacon of hope and encouragement, helping them find inner strength and resilience amidst adversity. They need to input their personal thoughts and they will get motivated from the quotes of Bhagvat Gita with their meanings.
 
 ## Requirements
 
