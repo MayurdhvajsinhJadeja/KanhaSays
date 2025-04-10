@@ -26,9 +26,6 @@ KanhaSays works by making use of a JSON file that contains all of the verses fro
 
 ## Screenshots
 
-- Flowchart
-- ![FlowChart](https://github.com/MayurdhvajsinhJadeja/KanhaSays/blob/main/flowchart.jpg)
-
 - Light Mode
 - ![LightMode](https://github.com/MayurdhvajsinhJadeja/KanhaSays/blob/main/lightmode.jpg)
 
@@ -41,9 +38,6 @@ KanhaSays works by making use of a JSON file that contains all of the verses fro
 ## Future Work
 
 In the future, we plan to improve the system by using a semantic approach to better understand the user's intent and provide more accurate verses. We also plan to add a chatbot feature that will remember the user's previous inputs and provide more personalized responses. Additionally, we plan to allow users to create their own accounts and save their favorite verses for easy access.
-
-## Youtube Link
-https://youtu.be/tueAASyv7H0
 
 
 ## Contributors
